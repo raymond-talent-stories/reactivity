@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="module">
+    import { Reactivity } from '../src/reactivity.js'
+    import { VDom } from '../src/vdom.js'
+
+    new Reactivity({
+      render: () => new VDom({
+        data: {
+          message: 123,
+          profile: {
+            name: 'raymond'
+          }
+        },
+        template: `<div>{{ profile.name }}</div>`,
+        mounted() {
+          this.data.profile.name = 'Lee'
+        }
+      })
+    }).mount(app)
+  </script>
+</body>
+
+</html>
